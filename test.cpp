@@ -102,3 +102,78 @@ Pokemon allocatePokemon(int chosen) {
     }
 };
 
+void battle(Pokemon& myPokemon, Pokemon& battlePokemon) {
+    std::string myLatestSkill = "NONE";
+    std::string yourLatestSkill = "NONE";
+    int chosenSkill;
+    bool myturn = true;
+    if (myPokemon.Hp !=0 && battlePokemon.Hp !=0 && myturn) {
+        std::cout << "+-------------------------------------------------------------+\n";
+        std::cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |\n";
+        std::cout << "+------------------------------+------------------------------+\n";
+        std::cout << "| " << myPokemon.pokemonName << "(*)| "<< battlePokemon.pokemonName << "|\n";
+        std::cout << "| Type: " << myPokemon.pokemonType << "| Type: "<< battlePokemon.pokemonType << "|\n";
+        std::cout << "| HP: " << myPokemon.Hp << "| " << battlePokemon.Hp << "|\n";
+        std::cout << "+------------------------------+------------------------------+\n";
+        std::cout << "| Latest Skill: " << myLatestSkill << "| LatestSkill" << yourLatestSkill << "|\n";
+        std::cout << "|                              |                              |\n";
+        std::cout << "+------------------------------+------------------------------+\n";
+        std::cout << "| (0) " << myPokemon.skill_0.skillName << "| (0) " << battlePokemon.skill_0.skillName << "|\n";
+        std::cout << "| - Type: " << myPokemon.skill_0.skillType << "| - Type: " << battlePokemon.skill_0.skillType << "|\n";
+        std::cout << "| - Damage: " << myPokemon.skill_0.damage << "| - Damage: " << battlePokemon.skill_0.damage << "|\n";
+        std::cout << "| - Count: " << myPokemon.skill_0.maxTry << "| - Count: " << battlePokemon.skill_0.maxTry << "|\n";
+        std::cout << "| (1) " << myPokemon.skill_1.skillName << "| (1) " << battlePokemon.skill_1.skillName << "|\n";
+        std::cout << "| - Type: " << myPokemon.skill_1.skillType << "| - Type: " << battlePokemon.skill_1.skillType << "|\n";
+        std::cout << "| - Damage: " << myPokemon.skill_1.damage << "| - Damage: " << battlePokemon.skill_1.damage << "|\n";
+        std::cout << "| - Count: " << myPokemon.skill_1.maxTry << "| - Count: " << battlePokemon.skill_1.maxTry << "|\n";
+        std::cout << "| (2) " << myPokemon.skill_2.skillName << "| (2) " << battlePokemon.skill_2.skillName << "|\n";
+        std::cout << "| - Type: " << myPokemon.skill_2.skillType << "| - Type: " << battlePokemon.skill_2.skillType << "|\n";
+        std::cout << "| - Damage: " << myPokemon.skill_2.damage << "| - Damage: " << battlePokemon.skill_2.damage << "|\n";
+        std::cout << "| - Count: " << myPokemon.skill_2.maxTry << "| - Count: " << battlePokemon.skill_2.maxTry << "|\n";
+        std::cout << "| (3) " << myPokemon.skill_3.skillName << "| (3) " << battlePokemon.skill_3.skillName << "|\n";
+        std::cout << "| - Type: " << myPokemon.skill_3.skillType << "| - Type: " << battlePokemon.skill_3.skillType << "|\n";
+        std::cout << "| - Damage: " << myPokemon.skill_3.damage << "| - Damage: " << battlePokemon.skill_3.damage << "|\n";
+        std::cout << "| - Count: " << myPokemon.skill_3.maxTry << "| - Count: " << battlePokemon.skill_3.maxTry << "|\n";
+        std::cout << "+------------------------------+------------------------------+\n";
+        std::cout << "Choose a skill (0~3): ";
+        std::cin >> chosenSkill;
+        std::cout << chosenSkill;
+    } else if (myPokemon.Hp !=0 && battlePokemon.Hp !=0 && !myturn) {
+        std::cout << "+-------------------------------------------------------------+\n";
+        std::cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |\n";
+        std::cout << "+------------------------------+------------------------------+\n";
+        std::cout << "| " << myPokemon.pokemonName << "| "<< battlePokemon.pokemonName << " (*) |\n";
+        std::cout << "| Type: " << myPokemon.pokemonType << "| Type: "<< battlePokemon.pokemonType << "|\n";
+        std::cout << "| HP: " << myPokemon.Hp << "| " << battlePokemon.Hp << "|\n";
+        std::cout << "+------------------------------+------------------------------+\n";
+        std::cout << "| Latest Skill: " << myLatestSkill << "| LatestSkill" << yourLatestSkill << "|\n";
+        std::cout << "|                              |                              |\n";
+        std::cout << "+------------------------------+------------------------------+\n";
+        std::cout << "| (0) " << myPokemon.skill_0.skillName << "| (0) " << battlePokemon.skill_0.skillName << "|\n";
+        std::cout << "| - Type: " << myPokemon.skill_0.skillType << "| - Type: " << battlePokemon.skill_0.skillType << "|\n";
+        std::cout << "| - Damage: " << myPokemon.skill_0.damage << "| - Damage: " << battlePokemon.skill_0.damage << "|\n";
+        std::cout << "| - Count: " << myPokemon.skill_0.maxTry << "| - Count: " << battlePokemon.skill_0.maxTry << "|\n";
+        std::cout << "| (1) " << myPokemon.skill_1.skillName << "| (1) " << battlePokemon.skill_1.skillName << "|\n";
+        std::cout << "| - Type: " << myPokemon.skill_1.skillType << "| - Type: " << battlePokemon.skill_1.skillType << "|\n";
+        std::cout << "| - Damage: " << myPokemon.skill_1.damage << "| - Damage: " << battlePokemon.skill_1.damage << "|\n";
+        std::cout << "| - Count: " << myPokemon.skill_1.maxTry << "| - Count: " << battlePokemon.skill_1.maxTry << "|\n";
+        std::cout << "| (2) " << myPokemon.skill_2.skillName << "| (2) " << battlePokemon.skill_2.skillName << "|\n";
+        std::cout << "| - Type: " << myPokemon.skill_2.skillType << "| - Type: " << battlePokemon.skill_2.skillType << "|\n";
+        std::cout << "| - Damage: " << myPokemon.skill_2.damage << "| - Damage: " << battlePokemon.skill_2.damage << "|\n";
+        std::cout << "| - Count: " << myPokemon.skill_2.maxTry << "| - Count: " << battlePokemon.skill_2.maxTry << "|\n";
+        std::cout << "| (3) " << myPokemon.skill_3.skillName << "| (3) " << battlePokemon.skill_3.skillName << "|\n";
+        std::cout << "| - Type: " << myPokemon.skill_3.skillType << "| - Type: " << battlePokemon.skill_3.skillType << "|\n";
+        std::cout << "| - Damage: " << myPokemon.skill_3.damage << "| - Damage: " << battlePokemon.skill_3.damage << "|\n";
+        std::cout << "| - Count: " << myPokemon.skill_3.maxTry << "| - Count: " << battlePokemon.skill_3.maxTry << "|\n";
+        std::cout << "+------------------------------+------------------------------+\n";
+        std::cout << "Choose a skill (0~3): ";
+        std::cin >> chosenSkill;
+        std::cout << chosenSkill;
+    } else if (myPokemon.Hp == 0) {
+        std::cout << "===============================================================";
+        std::cout << "Match Result: " << myPokemon.pokemonName << " defeats " << battlePokemon.pokemonName << "\n";
+    } else if (battlePokemon.Hp == 0) {
+        std::cout << "===============================================================";
+        std::cout << "Match Result: " << battlePokemon.pokemonName << " defeats " << myPokemon.pokemonName << "\n";
+    }
+} 
