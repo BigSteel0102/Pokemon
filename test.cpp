@@ -28,15 +28,14 @@ class Pokemon {
 //Declare Functions
 void selectPokemon(Pokemon& myPokemon, Pokemon& battlePokemon);
 Pokemon allocatePokemon(int chosen);
-
 void battle(Pokemon& myPokemon, Pokemon& battlePokemon);
 void battleInterface(Pokemon& myPokemon, Pokemon& battlePokemon, bool myturn, int chosenSkill);
-
 std::string generateString(int count);
 int intLength(int input);
 void pokemonInfo(Pokemon myPokemon, Pokemon battlePokemon, bool myturn);
 void latestSkill(Pokemon myPokemon, Pokemon battlePokemon);
 void skillSet(int num, Pokemon myPokemon, Pokemon battlePokemon);
+int checkingSkills(Pokemon myPokemon, Pokemon battlePokemon);
 
 //Main Function
 int main() {
@@ -118,6 +117,7 @@ Pokemon allocatePokemon(int chosen) {
 
 void battle(Pokemon& myPokemon, Pokemon& battlePokemon) {
     int chosenSkill;
+    int damage;
     bool myturn = true;
     while (myPokemon.Hp > 0 && battlePokemon.Hp > 0) {
         battleInterface(myPokemon, battlePokemon, myturn, chosenSkill);
@@ -207,3 +207,64 @@ void skillSet(int num, Pokemon myPokemon, Pokemon battlePokemon) {
     << "| - Count: " << battlePokemon.skill[num].maxTry << generateString(20 - intLength(battlePokemon.skill[num].maxTry)) << "|" << endl;
 }
 
+int checkingSkills(std::string skill, std::string type) {
+    if (skill == "Normal") {
+        return 1;
+    } else if (skill == "Ground") {
+        if (type == "Electric") {
+            return 2;
+        } else if (type == "Grass") {
+            return 0;
+        } else if (type == "Fier") {
+            return 2;
+        } else {
+            return 1;
+        }
+    } else if (skill == "Electric") {
+        if (type == "Ground") {
+            return 0;
+        } else if (type == "Electric") {
+            return 0;
+        } else if (type == "Water") {
+            return 2;
+        } else if (type == "Grass") {
+            return 0;
+        } else {
+            return 1;
+        }
+    } else if (skill == "Water") {
+        if (type == "Ground") {
+            return 2;
+        } else if (type == "Water") {
+            return 0;
+        } else if (type == "Grass") {
+            return 0;
+        } else if (type == "Fire") {
+            return 2;
+        } else {
+            return 1;
+        }
+    } else if (skill == "Grass") {
+        if (type == "Ground") {
+            return 0;
+        } else if (type == "Water") {
+            return 2;
+        } else if (type == "Grass") {
+            return 0;
+        } else if (type == "Fire") {
+            return 0;
+        } else {
+            return 1;
+        }
+    } else if (skill =="Fire") {
+        if (type == "Water") {
+            return 0;
+        } else if (type == "Grass") {
+            return 2;
+        } else if (type == "Fire") {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+} 
