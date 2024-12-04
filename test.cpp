@@ -35,7 +35,7 @@ int intLength(int input);
 void pokemonInfo(Pokemon myPokemon, Pokemon battlePokemon, bool myturn);
 void latestSkill(Pokemon myPokemon, Pokemon battlePokemon);
 void skillSet(int num, Pokemon myPokemon, Pokemon battlePokemon);
-int checkingSkills(Pokemon myPokemon, Pokemon battlePokemon);
+int checkingSkills(std::string skill, std::string type);
 
 //Main Function
 int main() {
@@ -117,15 +117,47 @@ Pokemon allocatePokemon(int chosen) {
 
 void battle(Pokemon& myPokemon, Pokemon& battlePokemon) {
     int chosenSkill;
-    int damage;
+    int damage = 0;
     bool myturn = true;
+
     while (myPokemon.Hp > 0 && battlePokemon.Hp > 0) {
         battleInterface(myPokemon, battlePokemon, myturn, chosenSkill);
         if (myturn) {
-            battlePokemon.Hp -= myPokemon.skill[chosenSkill].damage;
+            if (checkingSkills(myPokemon.skill[chosenSkill].skillType, battlePokemon.pokemonType) == 0) {
+                cout << myPokemon.pokemonName << " used " << myPokemon.skill[chosenSkill].skillName <<  "." << endl;
+                cout << "It was not very effective" << endl;
+                damage = myPokemon.skill[chosenSkill].damage - 3;
+            } 
+            else if (checkingSkills(myPokemon.skill[chosenSkill].skillType, battlePokemon.pokemonType) == 1) {
+                cout << myPokemon.pokemonName << " used " << myPokemon.skill[chosenSkill].skillName <<  "." << endl;
+                cout << "It was effective" << endl;
+                damage = myPokemon.skill[chosenSkill].damage;
+            } 
+            else if (checkingSkills(myPokemon.skill[chosenSkill].skillType, battlePokemon.pokemonType) == 2) {
+                cout << myPokemon.pokemonName << " used " << myPokemon.skill[chosenSkill].skillName <<  "." << endl;
+                cout << "It was super effective" << endl;
+                damage = myPokemon.skill[chosenSkill].damage + 5;
+            }
+            battlePokemon.Hp -= damage;
             myturn = false;
-        } else {
-            myPokemon.Hp -= battlePokemon.skill[chosenSkill].damage;
+        } 
+        else {
+            if (checkingSkills(battlePokemon.skill[chosenSkill].skillType, myPokemon.pokemonType) == 0) {
+                cout << battlePokemon.pokemonName << " used " << battlePokemon.skill[chosenSkill].skillName <<  "." << endl;
+                cout << "It was not very effective" << endl;
+                damage = battlePokemon.skill[chosenSkill].damage - 3;
+            } 
+            else if (checkingSkills(battlePokemon.skill[chosenSkill].skillType, myPokemon.pokemonType) == 1) {
+                cout << battlePokemon.pokemonName << " used " << battlePokemon.skill[chosenSkill].skillName <<  "." << endl;
+                cout << "It was effective" << endl;
+                damage = battlePokemon.skill[chosenSkill].damage;
+            } 
+            else if (checkingSkills(battlePokemon.skill[chosenSkill].skillType, myPokemon.pokemonType) == 2) {
+                cout << battlePokemon.pokemonName << " used " << battlePokemon.skill[chosenSkill].skillName <<  "." << endl;
+                cout << "It was super effective" << endl;
+                damage = battlePokemon.skill[chosenSkill].damage + 5;
+            }
+            myPokemon.Hp -= damage;
             myturn = true;
         }
     }
@@ -215,7 +247,7 @@ int checkingSkills(std::string skill, std::string type) {
             return 2;
         } else if (type == "Grass") {
             return 0;
-        } else if (type == "Fier") {
+        } else if (type == "Fire") {
             return 2;
         } else {
             return 1;
@@ -267,4 +299,5 @@ int checkingSkills(std::string skill, std::string type) {
             return 1;
         }
     }
+    return 0;
 } 
