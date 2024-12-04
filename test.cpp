@@ -250,11 +250,28 @@ void skillSet(int num, Pokemon myPokemon, Pokemon battlePokemon) {
 
     cout << "|     - Damage: " << myPokemon.skill[num].damage << generateString(15 - intLength(myPokemon.skill[num].damage))
     << "|     - Damage: " << battlePokemon.skill[num].damage << generateString(15 - intLength(battlePokemon.skill[num].damage)) << "|" << endl;
-
+    
+    if (myPokemon.skill[num].Try != 0 && battlePokemon.skill[num].Try != 0) {
         cout << "|     - Count: " << myPokemon.skill[num].Try << "(" << myPokemon.skill[num].MaxTry << ")" 
         << generateString(14 - intLength(myPokemon.skill[num].MaxTry) - intLength(myPokemon.skill[num].Try))
         << "|     - Count: " << battlePokemon.skill[num].Try << "(" << battlePokemon.skill[num].MaxTry << ")" 
         <<  generateString(14 - intLength(battlePokemon.skill[num].MaxTry) - intLength(battlePokemon.skill[num].Try)) << "|" << endl;
+    } else if (myPokemon.skill[num].Try == 0 && battlePokemon.skill[num].Try != 0) {
+        cout << "|     - Count: " << myPokemon.skill[num].Try << "(" << myPokemon.skill[num].MaxTry << ")" 
+        << generateString(13 - intLength(myPokemon.skill[num].MaxTry))
+        << "|     - Count: " << battlePokemon.skill[num].Try << "(" << battlePokemon.skill[num].MaxTry << ")" 
+        <<  generateString(14 - intLength(battlePokemon.skill[num].MaxTry) - intLength(battlePokemon.skill[num].Try)) << "|" << endl;
+    } else if (myPokemon.skill[num].Try != 0 && battlePokemon.skill[num].Try == 0) {
+        cout << "|     - Count: " << myPokemon.skill[num].Try << "(" << myPokemon.skill[num].MaxTry << ")" 
+        << generateString(14 - intLength(myPokemon.skill[num].MaxTry) - intLength(myPokemon.skill[num].Try))
+        << "|     - Count: " << battlePokemon.skill[num].Try << "(" << battlePokemon.skill[num].MaxTry << ")" 
+        <<  generateString(13 - intLength(battlePokemon.skill[num].MaxTry)) << "|" << endl;
+    } else {
+        cout << "|     - Count: " << myPokemon.skill[num].Try << "(" << myPokemon.skill[num].MaxTry << ")" 
+        << generateString(13 - intLength(myPokemon.skill[num].MaxTry))
+        << "|     - Count: " << battlePokemon.skill[num].Try << "(" << battlePokemon.skill[num].MaxTry << ")" 
+        <<  generateString(13 - intLength(battlePokemon.skill[num].MaxTry)) << "|" << endl;
+    }
     
 }
 
