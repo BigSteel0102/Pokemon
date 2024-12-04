@@ -25,14 +25,20 @@ class Pokemon {
         std::string usedSkill;
 };
 
+//Declare Functions
 void selectPokemon(Pokemon& myPokemon, Pokemon& battlePokemon);
 Pokemon allocatePokemon(int chosen);
+
 void battle(Pokemon& myPokemon, Pokemon& battlePokemon);
+void battleInterface(Pokemon& myPokemon, Pokemon& battlePokemon, bool myturn, int chosenSkill);
+
+std::string generateString(int count);
+int intLength(int input);
 void pokemonInfo(Pokemon myPokemon, Pokemon battlePokemon, bool myturn);
 void latestSkill(Pokemon myPokemon, Pokemon battlePokemon);
-std::string generateString(int count);
 void skillSet(int num, Pokemon myPokemon, Pokemon battlePokemon);
 
+//Main Function
 int main() {
     Pokemon myPokemon;
     Pokemon battlePokemon;
@@ -111,11 +117,29 @@ Pokemon allocatePokemon(int chosen) {
 };
 
 void battle(Pokemon& myPokemon, Pokemon& battlePokemon) {
-    std::string myLatestSkill = "NONE";
-    std::string yourLatestSkill = "NONE";
     int chosenSkill;
     bool myturn = true;
+    while (myPokemon.Hp > 0 && battlePokemon.Hp > 0) {
+        battleInterface(myPokemon, battlePokemon, myturn, chosenSkill);
+        if (myturn) {
+            battlePokemon.Hp -= myPokemon.skill[chosenSkill].damage;
+            myturn = false;
+        } else {
+            myPokemon.Hp -= battlePokemon.skill[chosenSkill].damage;
+            myturn = true;
+        }
+    }
+    
+    if (myPokemon.Hp <= 0) {
+        cout << "===============================================================" << endl;
+        cout << "Match Result: " << battlePokemon.pokemonName << " defeats" << myPokemon.pokemonName << endl;
+    } else if (battlePokemon.Hp <= 0) {
+        cout << "===============================================================" << endl;
+        cout << "Match Result: " << myPokemon.pokemonName << " defeats " << battlePokemon.pokemonName << endl;
+    }
+} 
 
+void battleInterface(Pokemon& myPokemon, Pokemon& battlePokemon, bool myturn, int chosenSkill) {
     cout << "+-------------------------------------------------------------+" << endl;
     cout << "| 2024-02 Object-Oriented Programming Pokemon Master          |" << endl;
     cout << "+------------------------------+------------------------------+" << endl;
